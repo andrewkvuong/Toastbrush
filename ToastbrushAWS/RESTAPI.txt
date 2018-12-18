@@ -1,0 +1,262 @@
+REST API Documentation
+
+***************GetUser - Gets the info on a User given their username.
+Input:
+{
+	"User":"Andrew"
+}
+Output:
+{
+	"User":"Andrew",
+	"Photo":"mario.jpg",
+	"Description":"sdkflsld",
+	"Email":"andrewkvuong@gmail.com"
+}
+
+***************GetImage - Gets an image from S3 given the name of the file.
+Input:
+{
+	"Name": "mario.jpg"
+}
+Output:
+{
+	"Encoded": "base64 encoding of file"
+}
+
+***************SendImage - Sends an Image to the RDS database. Check if file name exists. If it does not exist, insert it otherwise ask for a new name. If Name is returned name was not available.
+Input:
+{
+	"Name":"Name of image",
+	"File":"Name of file",
+	"User":"Name of user",
+	"Description":"Description for object",
+	"Encoded":"skdjlfkjd"
+}
+Output:
+{
+	"Success":"true or false or file"
+}
+
+***************GetImageInfo (info) from RDS
+Input:
+{
+	"File":"Name of file"
+}
+Output:
+{
+	"Name":"Name of image",
+	"File":"Name of file",
+	"User":"Name of user",
+	"Description":"Description for object",
+	"Score":0
+	"Date": 18947249857
+}
+
+***************AddUser - Adds a user into the database; Will fail if email already exists.
+Input:
+{
+	"User":"Andrew";,
+	"Email":"andrewkvuong@gmail.com";,
+	"Description":"sdkflsld";,
+	"Encoded":"sklfjd"
+}
+Output:
+{
+	"Success":"true or false or email or name"
+}
+
+***************EditImageDescription
+Input:
+{
+	"File":"Filename",
+	"Description":"New Description"
+}
+Output:
+{
+	"Success":"true or false"
+}
+
+***************Vote Comments
+Input:
+{
+	"ID":"Comment Id",
+	"User":"Username",
+	"Value":"-1 or 1 or 0"
+}
+Output:
+{
+	"Success":"True or False"
+}
+
+***************Vote Images
+Input:
+{
+	"File":"Filename",
+	"User":"Username",
+	"Value":"-1 or 1"
+}
+Output:
+{
+	"Success":"True or False"
+}
+
+***************SearchImagesByKeyword (Return List) - Return a list of files where filename or name contains keyword
+Input
+{
+	"Keyword":"test"
+	"Order": 0 ... 3 (0 - Newest, 1 - Oldest, 2 - High Score 3 - Low Score)
+	"Limit":10
+	"Offset":0
+	"CurrentUser": "m.mackliet@gmail.com"
+}
+Output:
+{
+  "list": [
+    {
+      "Name": "test",
+      "Image": "cb73d28e-b6f8-41c6-bfcd-7cb9f0979ed9",
+      "Score": 1,
+      "User": "m.mackliet@gmail.com",
+      "Description": "test image",
+      "Date": 1543129369000,
+      "UserScore": 1
+    },
+    {
+      "Name": "test M",
+      "Image": "f7fd4071-3432-4972-a3e1-78cf8a9da3a7",
+      "Score": 1,
+      "User": "m.mackliet@gmail.com",
+      "Description": "some test image",
+      "Date": 1542919481000,
+      "UserScore": 1
+    }
+  ]
+}
+
+***************SearchImagesByUser (Date....Rating) (Return List) Same as above with different filter
+Input
+{
+  	"User": "m.mackliet@gmail.com",
+	"Order": 0 ... 3 (0 - Newest, 1 - Oldest, 2 - High Score 3 - Low Score)
+	"Limit":10
+	"Offset":0
+	"CurrentUser": "m.mackliet@gmail.com"
+}
+Output:
+{
+  "list": [
+    {
+      "Name": "test",
+      "Image": "cb73d28e-b6f8-41c6-bfcd-7cb9f0979ed9",
+      "Score": 1,
+      "User": "m.mackliet@gmail.com",
+      "Description": "test image",
+      "Date": 1543129369000,
+      "UserScore": 1
+    },
+    {
+      "Name": "Michael",
+      "Image": "8d9fd726-48b6-4e99-b4ff-aa15f031f770",
+      "Score": 0,
+      "User": "m.mackliet@gmail.com",
+      "Description": "Michael's test image",
+      "Date": 1542919524000,
+      "UserScore": 0
+    },
+    {
+      "Name": "test M",
+      "Image": "f7fd4071-3432-4972-a3e1-78cf8a9da3a7",
+      "Score": 1,
+      "User": "m.mackliet@gmail.com",
+      "Description": "some test image",
+      "Date": 1542919481000,
+      "UserScore": 1
+    }
+  ]
+}
+
+***************Add Comment (Images)
+Input:
+{
+	"File":"Filename",
+	"User":"Username",
+	"Comment":"comment"
+}
+Output:
+{
+	"Success":"True or False"
+}
+
+***************Edit Comment
+Input:
+{
+	"ID":1,
+	"Comment":"comment"
+}
+Output:
+{
+	"Success":"True or False"
+}
+
+***************Get Comment (Return List) - Return list of comments where filename matches
+Input
+{
+	"File":"filename"
+	"Order": 0 ... 3 (0 - Newest, 1 - Oldest, 2 - High Score 3 - Low Score)
+	"Limit":10
+	"Offset":0
+}
+Output:
+{
+  "list": [
+    {
+      "Owner": "Andrew",
+      "ID": 2,
+      "File": "mario.jpg",
+      "Score": 2,
+      "Comment": "Cool Mario!"
+	  "Date": 1542919524000
+    },
+    {
+      "Owner": "Andrew",
+      "ID": 1,
+      "File": "mario.jpg",
+      "Score": 0,
+      "Comment": "comment"
+	  "Date": 1542919524000
+    }
+	....
+  ]
+}
+
+***************Edit User Description
+Input:
+{
+	"User":"username",
+	"Description":"comment"
+}
+Output:
+{
+	"Success":"True or False"
+}
+
+***************Edit User Profile Picture
+Input:
+{
+	"User":"username",
+	"Encoded":"encoded"
+}
+Output:
+{
+	"Success":"True or False"
+}
+
+***************Delete Image
+Input:
+{
+	"File":"filename"
+}
+Output:
+{
+	"Success":"True or False"
+}

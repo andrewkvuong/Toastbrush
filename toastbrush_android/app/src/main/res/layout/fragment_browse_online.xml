@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/MainTheme"
+    tools:context=".OnlineBrowseFragment"
+    android:layout_marginTop="?android:attr/actionBarSize">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.toastbrush.toastbrush_android.EmptySubmitSearchView
+            android:id="@+id/onlineSearchView"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:iconifiedByDefault="false"/>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center|bottom"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/searchTypeSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/orderSpinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/online_file_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ListView>
+    </LinearLayout>
+    <!-- https://androidcookbook.com/Recipe.seam;jsessionid=84D3762FD44502EEE9A5DCB786480362?recipeId=830&recipeFrom=ViewTOC -->
+
+</FrameLayout>

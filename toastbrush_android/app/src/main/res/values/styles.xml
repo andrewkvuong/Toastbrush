@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MainTheme">
+        <item name="android:fontFamily">@font/raleway</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="MainTheme">
+        <item name="android:background">@color/toolbar_color</item>
+    </style>
+
+    <style name="NavHeaderTheme" parent="MainTheme">
+        <item name="android:background">@color/nav_header_color</item>
+    </style>
+</resources>
